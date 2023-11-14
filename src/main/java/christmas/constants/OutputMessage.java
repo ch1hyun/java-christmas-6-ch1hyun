@@ -14,10 +14,4 @@ public class OutputMessage {
     public static final String TITLE_REWARD_LIST = "<혜택 내역>";
     public static final String TITLE_REWARD_AMOUNT = "<총혜택 금액>";
     public static final String TITLE_EVENT_BADGE = "<12월 이벤트 배지>";
-
-    /* Format Strings */
-    public static final String FORMAT_DECIMAL_AMOUNT = "###,###";
-    public static final String FORMAT_ORDER_ITEM = "%s %d개";
-    public static final String FORMAT_AMOUNT = "%s원";
-    public static final String FORMAT_REWARD_ITEM = "%s: %s";
 }
