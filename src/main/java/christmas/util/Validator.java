@@ -1,5 +1,8 @@
 package christmas.util;
 
+import christmas.constants.enums.Menu;
+import christmas.constants.enums.MenuBoard;
+import christmas.model.MenuItem;
 import java.util.List;
 
 public class Validator {
@@ -17,8 +20,10 @@ public class Validator {
         }
     }
 
-    public static void validateNumberLessThanCriteria(Integer criteria, Integer number, String errorMessage) {
-        if (number > criteria) {
+    public static void validateSingleMenuItem(MenuItem menuItem, String errorMessage) {
+        if (MenuBoard.음료.contains(
+                Menu.valueOf(menuItem.getName())
+        )) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

@@ -11,13 +11,7 @@ public class OrderAmount {
         this.subTotal = subTotal;
     }
 
-    private static void validate(Integer subTotal) {
-        Validator.validatePositiveNumber(subTotal, ErrorMessage.INVALID_ORDER.getMessage());
-    }
-
     public static OrderAmount from(Integer subTotal) {
-        validate(subTotal);
-
         return new OrderAmount(subTotal);
     }
 

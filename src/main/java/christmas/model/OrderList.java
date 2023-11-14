@@ -13,18 +13,25 @@ public class OrderList {
     }
 
     private static void validate(List<MenuItem> orderList) {
-        Validator.validateNumberLessThanCriteria(
-                20,
-                orderList.stream()
-                        .mapToInt(MenuItem::getCount)
-                        .sum(),
-                ErrorMessage.INVALID_ORDER.getMessage()
-        );
+        Integer countMenu = orderList.stream()
+                .mapToInt(MenuItem::getCount)
+                .sum();
 
         Validator.validateDuplicate(
-                orderList.stream()
-                        .map(MenuItem::getName)
-                        .toList(),
+            orderList.stream()
+                    .map(MenuItem::getName)
+                    .toList(),
+            ErrorMessage.INVALID_ORDER.getMessage()
+        );
+
+        if (countMenu == 1) {
+            Validator.validateSingleMenuItem(orderList.get(0), ErrorMessage.INVALID_ORDER.getMessage());
+        }
+
+        Validator.validateNumberInRange(
+                1,
+                20,
+                countMenu,
                 ErrorMessage.INVALID_ORDER.getMessage()
         );
     }
