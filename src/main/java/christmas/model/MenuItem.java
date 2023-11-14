@@ -2,6 +2,7 @@ package christmas.model;
 
 import christmas.constants.enums.Menu;
 import christmas.constants.enums.MenuBoard;
+import christmas.util.Formatter;
 
 public class MenuItem {
     private final Menu menu;
@@ -26,5 +27,10 @@ public class MenuItem {
 
     public Integer getCount() {
         return count.getCount();
+    }
+
+    @Override
+    public String toString() {
+        return Formatter.formatOrderItem(menu.getName(), count.getCount());
     }
 }
