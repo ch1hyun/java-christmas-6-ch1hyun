@@ -1,10 +1,12 @@
 package christmas.controller;
 
+import christmas.model.MenuItem;
 import christmas.model.OrderAmount;
 import christmas.model.OrderDate;
 import christmas.model.OrderList;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.List;
 
 public class OrderController {
     private OrderList orderList;
@@ -15,15 +17,36 @@ public class OrderController {
 
     public void proceedOrder() {
         requestDate();
+        requestMenu();
+        generateOrderAmount();
     }
 
     private void requestDate() {
-        while(true) {
+        while (true) {
             try {
-                String inputNumber = InputView.readDate();
-            } catch () {
+                Integer date = InputView.readDate();
 
+                orderDate = OrderDate.from(date);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void requestMenu() {
+        while (true) {
+            try {
+                List<MenuItem> menuList = InputView.readMenu();
+
+                orderList = OrderList.from(menuList);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void generateOrderAmount() {
     }
 }
