@@ -29,9 +29,13 @@ public class WeekdayEvent {
     }
 
     public String toString(Integer date) {
-        return Formatter.formatRewardItem(
-                EVENT_NAME,
-                -discountType.getAmount(date)
-        );
+        if (isAcitve()) {
+            return Formatter.formatRewardItem(
+                    EVENT_NAME,
+                    -discountType.getAmount(date)
+            );
+        }
+
+        return "";
     }
 }

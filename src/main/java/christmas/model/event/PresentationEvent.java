@@ -32,10 +32,14 @@ public class PresentationEvent {
         return activation.isActive();
     }
 
-    public String toString(Integer date) {
-        return Formatter.formatRewardItem(
-                EVENT_NAME,
-                -presentationItem.getAmount()
-        );
+    public String toString() {
+        if (isAcitve()) {
+            return Formatter.formatRewardItem(
+                    EVENT_NAME,
+                    -presentationItem.getAmount()
+            );
+        }
+
+        return "";
     }
 }
