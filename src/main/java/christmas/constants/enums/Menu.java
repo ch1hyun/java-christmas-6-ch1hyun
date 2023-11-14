@@ -1,6 +1,7 @@
 package christmas.constants.enums;
 
 public enum Menu {
+    NULL("없음", 0),
     양송이수프("양송이수프", 6_000),
     타파스("타파스", 5_500),
     시저샐러드("시저샐러드", 8_000),
