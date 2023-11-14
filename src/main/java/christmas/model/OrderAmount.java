@@ -2,15 +2,15 @@ package christmas.model;
 
 import christmas.util.Formatter;
 
-public class Cost {
+public class OrderAmount {
     private final Integer subTotal;
 
-    private Cost(Integer subTotal) {
+    private OrderAmount(Integer subTotal) {
         this.subTotal = subTotal;
     }
 
-    public static Cost from(Integer subTotal) {
-        return new Cost(subTotal);
+    public static OrderAmount from(Integer subTotal) {
+        return new OrderAmount(subTotal);
     }
 
     public Boolean isGreaterThanOrEqualTo(Integer amount) {
