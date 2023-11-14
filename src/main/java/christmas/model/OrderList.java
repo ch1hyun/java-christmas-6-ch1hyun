@@ -42,6 +42,12 @@ public class OrderList {
         return new OrderList(orderList);
     }
 
+    public Integer getAmount() {
+        return orderList.stream()
+                .mapToInt(MenuItem::getAmount)
+                .sum();
+    }
+
     @Override
     public String toString() {
         return String.join(

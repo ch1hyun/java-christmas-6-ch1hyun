@@ -48,5 +48,6 @@ public class OrderController {
     }
 
     private void generateOrderAmount() {
+        orderAmount = OrderAmount.from(orderList.getAmount());
     }
 }
