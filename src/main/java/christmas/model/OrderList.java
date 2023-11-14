@@ -7,8 +7,12 @@ public class OrderList {
     private final List<MenuItem> orderList;
 
     private OrderList(List<MenuItem> orderList) {
-        // validate
         this.orderList = orderList;
+    }
+
+    public static OrderList from(List<MenuItem> orderList) {
+        // validate
+        return new OrderList(orderList);
     }
 
     @Override
