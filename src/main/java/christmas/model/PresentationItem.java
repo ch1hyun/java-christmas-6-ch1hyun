@@ -24,6 +24,10 @@ public class PresentationItem {
 
     @Override
     public String toString() {
+        if (isEmpty()) {
+            return presentationType.getName();
+        }
+
         return Formatter.formatOrderItem(
                 presentationType.getName(),
                 presentationType.getCount()
