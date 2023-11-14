@@ -4,6 +4,7 @@ public class OutputMessage {
     private OutputMessage() {}
 
     public static final String MINUS = "-";
+    public static final String NOTHING = "없음";
     public static final String START_SYSTEM = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     public static final String START_RESULT = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     public static final String TITLE_ORDER_LIST = "<주문 메뉴>";
