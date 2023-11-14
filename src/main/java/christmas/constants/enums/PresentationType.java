@@ -8,7 +8,6 @@ public enum PresentationType {
 
     private final Menu menu;
     private final Integer minimumAmount;
-    private static final String name = "증정 이벤트";
 
     PresentationType(Menu menu, Integer minimumAmount) {
         this.menu = menu;
@@ -23,10 +22,15 @@ public enum PresentationType {
         return PresentationType.NULL;
     }
 
-    public String getName() {
-        return name;
-    }
     public Integer getAmount() {
         return menu.getAmount();
+    }
+
+    public String getName() {
+        return menu.getName();
+    }
+
+    public Integer getCount() {
+        return 1;
     }
 }

@@ -15,22 +15,18 @@ public class PresentationItem {
     }
 
     public Integer getAmount() {
-        return presentationType.getAmount();
+        return presentationType.getAmount() * presentationType.getCount();
     }
 
     public Boolean isEmpty() {
         return presentationType == PresentationType.NULL;
     }
 
-    public void printMenu() {
-        // output view 연결
-    }
-
     @Override
     public String toString() {
-        return Formatter.formatRewardItem(
+        return Formatter.formatOrderItem(
                 presentationType.getName(),
-                presentationType.getAmount()
+                presentationType.getCount()
         );
     }
 }
