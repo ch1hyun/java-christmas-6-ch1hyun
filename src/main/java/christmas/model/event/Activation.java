@@ -11,7 +11,7 @@ public class Activation {
         return new Activation(active);
     }
 
-    public Boolean isActivate() {
+    public Boolean isActive() {
         return active;
     }
 }
