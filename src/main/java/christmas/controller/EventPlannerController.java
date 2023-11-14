@@ -1,5 +1,7 @@
 package christmas.controller;
 
+import christmas.view.OutputView;
+
 public class EventPlannerController implements EntryController {
     private final OrderController orderController;
     private final EventController eventController;
@@ -17,6 +19,8 @@ public class EventPlannerController implements EntryController {
 
     @Override
     public void proceed() {
+        OutputView.printStartSystem();
+
         requestOrder();
         requestEvent();
         requesetCalculate();
