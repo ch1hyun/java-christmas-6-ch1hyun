@@ -1,5 +1,7 @@
 package christmas.util;
 
+import java.util.List;
+
 public class Validator {
     private Validator() {}
 
@@ -17,6 +19,12 @@ public class Validator {
 
     public static void validateNumberLessThanCriteria(Integer criteria, Integer number, String errorMessage) {
         if (number > criteria) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static<T> void validateDuplicate(List<T> list, String errorMessage) {
+        if (list.size() != list.stream().distinct().count()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

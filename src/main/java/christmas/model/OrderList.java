@@ -20,6 +20,13 @@ public class OrderList {
                         .sum(),
                 ErrorMessage.INVALID_ORDER.getMessage()
         );
+
+        Validator.validateDuplicate(
+                orderList.stream()
+                        .map(MenuItem::getName)
+                        .toList(),
+                ErrorMessage.INVALID_ORDER.getMessage()
+        );
     }
 
     public static OrderList from(List<MenuItem> orderList) {

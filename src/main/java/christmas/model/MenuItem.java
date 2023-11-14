@@ -29,6 +29,10 @@ public class MenuItem {
         return count.getCount();
     }
 
+    public String getName() {
+        return menu.getName();
+    }
+
     @Override
     public String toString() {
         return Formatter.formatOrderItem(menu.getName(), count.getCount());
