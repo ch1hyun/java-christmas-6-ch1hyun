@@ -50,4 +50,12 @@ public class OrderController {
     private void generateOrderAmount() {
         orderAmount = OrderAmount.from(orderList.getAmount());
     }
+
+    public void requestResultOrderList() {
+        OutputView.printOrderList(orderList.toString());
+    }
+
+    public void requestResultSubTotal() {
+        OutputView.printTotalAmountBeforeDiscount(orderAmount.toString());
+    }
 }
