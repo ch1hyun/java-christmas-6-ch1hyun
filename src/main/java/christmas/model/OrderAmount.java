@@ -8,16 +8,16 @@ public class OrderAmount {
     private final Integer subTotal;
 
     private OrderAmount(Integer subTotal) {
-        validate(subTotal);
-
         this.subTotal = subTotal;
     }
 
-    private void validate(Integer subTotal) {
+    private static void validate(Integer subTotal) {
         Validator.validatePositiveNumber(subTotal, ErrorMessage.INVALID_ORDER.getMessage());
     }
 
     public static OrderAmount from(Integer subTotal) {
+        validate(subTotal);
+
         return new OrderAmount(subTotal);
     }
 

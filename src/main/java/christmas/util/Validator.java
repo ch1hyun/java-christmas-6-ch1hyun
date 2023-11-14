@@ -8,4 +8,10 @@ public class Validator {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    public static void validateNumberInRange(Integer number, String errorMessage) {
+        if (number < 1 || 31 < number) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
 }

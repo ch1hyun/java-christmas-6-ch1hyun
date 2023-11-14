@@ -7,16 +7,16 @@ public class Count {
     private final Integer count;
 
     private Count(Integer count) {
-        validate(count);
-
         this.count = count;
     }
 
-    private void validate(Integer count) {
+    private static void validate(Integer count) {
         Validator.validatePositiveNumber(count, ErrorMessage.INVALID_ORDER.getMessage());
     }
 
     public static Count from(Integer count) {
+        validate(count);
+
         return new Count(count);
     }
 
