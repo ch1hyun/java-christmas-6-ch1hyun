@@ -19,6 +19,10 @@ public class RewardAmount {
         return discountAmount;
     }
 
+    public Boolean isGreaterThanOrEqualTo(Integer amount) {
+        return discountAmount + presentationAmount >= amount;
+    }
+
     @Override
     public String toString() {
         return Formatter.formatAmount(-(discountAmount + presentationAmount));

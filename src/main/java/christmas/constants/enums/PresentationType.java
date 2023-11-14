@@ -14,7 +14,7 @@ public enum PresentationType {
         this.minimumAmount = minimumAmount;
     }
 
-    public PresentationType getPresentationType(OrderAmount orderAmount) {
+    public static PresentationType getPresentationType(OrderAmount orderAmount) {
         if (orderAmount.isGreaterThanOrEqualTo(PresentationType.샴페인.minimumAmount)) {
             return PresentationType.샴페인;
         }

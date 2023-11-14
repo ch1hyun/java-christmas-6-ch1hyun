@@ -1,5 +1,6 @@
 package christmas.constants.enums;
 
+import christmas.model.RewardAmount;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -21,16 +22,16 @@ public enum BadgeType {
         return name;
     }
 
-    public BadgeType getBadgeType(Integer rewardAmount) {
-        if (rewardAmount >= BadgeType.산타.minimumAmount) {
+    public static BadgeType getBadgeType(RewardAmount rewardAmount) {
+        if (rewardAmount.isGreaterThanOrEqualTo(BadgeType.산타.minimumAmount)) {
             return BadgeType.산타;
         }
 
-        if (rewardAmount >= BadgeType.트리.minimumAmount) {
+        if (rewardAmount.isGreaterThanOrEqualTo(BadgeType.트리.minimumAmount)) {
             return BadgeType.트리;
         }
 
-        if (rewardAmount >= BadgeType.별.minimumAmount) {
+        if (rewardAmount.isGreaterThanOrEqualTo(BadgeType.별.minimumAmount)) {
             return BadgeType.별;
         }
 
