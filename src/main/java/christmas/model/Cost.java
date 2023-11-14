@@ -17,6 +17,10 @@ public class Cost {
         return subTotal >= amount;
     }
 
+    public Integer getTotalAmount(DiscountList discountList) {
+        return subTotal - discountList.getAmount();
+    }
+
     @Override
     public String toString() {
         return Formatter.formatAmount(subTotal);
