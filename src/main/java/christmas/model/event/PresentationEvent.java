@@ -28,6 +28,10 @@ public class PresentationEvent {
         return new PresentationEvent(Activation.from(active), presentationItem);
     }
 
+    public PresentationItem getPresentationItem() {
+        return presentationItem;
+    }
+
     public Boolean isAcitve() {
         return activation.isActive();
     }

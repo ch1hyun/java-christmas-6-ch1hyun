@@ -32,7 +32,7 @@ public class EventController {
     public void proceedEvent(OrderDate orderDate, OrderAmount orderAmount) {
         requestDiscountEvent(orderDate);
         requestPresentationEvent(orderAmount);
-
+        requestRewardAmount();
         requestBadge();
     }
 
@@ -77,5 +77,17 @@ public class EventController {
         if (dDayEvent.isAcitve()) {
             discountList.add(DiscountItem.of(dDayEvent.getDiscountType(), orderDate.getDate()));
         }
+    }
+
+    private void requestPresentationEvent(OrderAmount orderAmount) {
+        presentationEvent = PresentationEvent.from(orderAmount);
+    }
+
+    private void requestRewardAmount() {
+        rewardAmount = RewardAmount.of(discountList, presentationEvent.getPresentationItem());
+    }
+
+    private void requestBadge() {
+        badge = Badge.from(rewardAmount);
     }
 }
