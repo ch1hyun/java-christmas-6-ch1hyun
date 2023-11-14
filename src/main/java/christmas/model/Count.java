@@ -8,7 +8,7 @@ public class Count {
         this.count = count;
     }
 
-    public Count from(Integer count) {
+    public static Count from(Integer count) {
         return new Count(count);
     }
 
