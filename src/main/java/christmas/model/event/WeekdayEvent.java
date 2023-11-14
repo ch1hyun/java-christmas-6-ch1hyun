@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
+import christmas.model.OrderDate;
 import christmas.util.Formatter;
 
 public class WeekdayEvent {
@@ -14,14 +15,18 @@ public class WeekdayEvent {
         this.discountType = DiscountType.평일;
     }
 
-    public static WeekdayEvent from(Day day) {
+    public static WeekdayEvent from(OrderDate orderDate) {
         Boolean active = false;
 
-        if (DiscountType.평일.contains(day)) {
+        if (orderDate.isDayGroup(DiscountType.평일)) {
             active = true;
         }
 
         return new WeekdayEvent(Activation.from(active));
+    }
+
+    public DiscountType getDiscountType() {
+        return discountType;
     }
 
     public Boolean isAcitve() {

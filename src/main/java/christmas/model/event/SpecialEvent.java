@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
+import christmas.model.OrderDate;
 import christmas.util.Formatter;
 
 public class SpecialEvent {
@@ -14,14 +15,18 @@ public class SpecialEvent {
         this.discountType = DiscountType.특별;
     }
 
-    public static SpecialEvent from(Day day) {
+    public static SpecialEvent from(OrderDate orderDate) {
         Boolean active = false;
 
-        if (DiscountType.특별.contains(day)) {
+        if (orderDate.isDayGroup(DiscountType.특별)) {
             active = true;
         }
 
         return new SpecialEvent(Activation.from(active));
+    }
+
+    public DiscountType getDiscountType() {
+        return discountType;
     }
 
     public Boolean isAcitve() {

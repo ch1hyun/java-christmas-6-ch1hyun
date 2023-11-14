@@ -29,7 +29,14 @@ public class OrderDate {
         return new OrderDate(date, Day.from(dayOfWeek.getValue()));
     }
 
-    public Boolean isGroup(DiscountType discountType) {
+    public Integer getDate() {
+        return date;
+    }
+
+    public Boolean isDayGroup(DiscountType discountType) {
         return discountType.contains(day);
+    }
+    public Boolean isDateGroup(DiscountType discountType) {
+        return discountType.contains(date);
     }
 }
