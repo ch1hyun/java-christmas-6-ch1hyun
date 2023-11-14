@@ -1,6 +1,8 @@
 package christmas.model;
 
 import christmas.constants.OutputMessage;
+import christmas.constants.enums.ErrorMessage;
+import christmas.util.Validator;
 import java.util.List;
 
 public class OrderList {
@@ -10,8 +12,19 @@ public class OrderList {
         this.orderList = orderList;
     }
 
+    private static void validate(List<MenuItem> orderList) {
+        Validator.validateNumberLessThanCriteria(
+                20,
+                orderList.stream()
+                        .mapToInt(MenuItem::getCount)
+                        .sum(),
+                ErrorMessage.INVALID_ORDER.getMessage()
+        );
+    }
+
     public static OrderList from(List<MenuItem> orderList) {
-        // validate
+        validate(orderList);
+
         return new OrderList(orderList);
     }
 

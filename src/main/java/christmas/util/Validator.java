@@ -9,8 +9,14 @@ public class Validator {
         }
     }
 
-    public static void validateNumberInRange(Integer number, String errorMessage) {
-        if (number < 1 || 31 < number) {
+    public static void validateNumberInRange(Integer from, Integer to, Integer number, String errorMessage) {
+        if (number < from || to < number) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static void validateNumberLessThanCriteria(Integer criteria, Integer number, String errorMessage) {
+        if (number > criteria) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

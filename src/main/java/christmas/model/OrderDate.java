@@ -17,7 +17,7 @@ public class OrderDate {
     }
 
     private static void validate(Integer date) {
-        Validator.validateNumberInRange(date, ErrorMessage.INVALID_DATE.getMessage());
+        Validator.validateNumberInRange(1, 31, date, ErrorMessage.INVALID_DATE.getMessage());
     }
 
     public static OrderDate from(Integer date) {
