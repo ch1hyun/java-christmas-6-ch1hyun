@@ -5,7 +5,7 @@ import christmas.constants.enums.DiscountType;
 import christmas.util.Formatter;
 
 public class WeekendEvent {
-    private static final성 String EVENT_NAME = "주말 할인";
+    private static final String EVENT_NAME = "주말 할인";
     private final Activation activation;
     private final DiscountType discountType;
 
