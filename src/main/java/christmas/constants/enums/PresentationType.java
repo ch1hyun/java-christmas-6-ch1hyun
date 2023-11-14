@@ -1,5 +1,7 @@
 package christmas.constants.enums;
 
+import christmas.model.OrderAmount;
+
 public enum PresentationType {
     NULL(Menu.NULL, 0),
     샴페인(Menu.샴페인, 120_000);
@@ -12,8 +14,8 @@ public enum PresentationType {
         this.minimumAmount = minimumAmount;
     }
 
-    public PresentationType getPresentationType(Integer subTotal) {
-        if (subTotal >= PresentationType.샴페인.minimumAmount) {
+    public PresentationType getPresentationType(OrderAmount orderAmount) {
+        if (orderAmount.isGreaterThanOrEqualTo(PresentationType.샴페인.minimumAmount)) {
             return PresentationType.샴페인;
         }
 
