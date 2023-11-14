@@ -18,4 +18,9 @@ public enum Week {
     public Boolean contains(Day day) {
         return dayList.contains(day);
     }
+
+    public Boolean contains(Integer date) {
+        return dayList.get(0).getIndex() <= date
+                && date <= dayList.get(1).getIndex();
+    }
 }

@@ -21,6 +21,9 @@ public enum DiscountType {
     public Boolean contains(Day day) {
         return week.contains(day);
     }
+    public Boolean contains(Integer date) {
+        return week.contains(date);
+    }
 
     public String getName() {
         return name;

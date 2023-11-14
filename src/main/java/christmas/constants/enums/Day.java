@@ -1,5 +1,7 @@
 package christmas.constants.enums;
 
+import java.util.Arrays;
+
 public enum Day {
     월(1),
     화(2),
@@ -15,6 +17,13 @@ public enum Day {
 
     Day(Integer index) {
         this.index = index;
+    }
+
+    public static Day from(Integer index) {
+        return Arrays.stream(Day.values())
+                .filter(day -> day.index.equals(index))
+                .toList()
+                .get(0);
     }
 
     public Integer getIndex() {
