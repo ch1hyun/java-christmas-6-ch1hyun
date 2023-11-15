@@ -1,6 +1,7 @@
 package christmas.model.event;
 
 import christmas.constants.EventConstant;
+import christmas.constants.OutputMessage;
 import christmas.constants.enums.DiscountType;
 import christmas.model.OrderDate;
 import christmas.util.Formatter;
@@ -40,6 +41,6 @@ public class DDayEvent {
             );
         }
 
-        return "";
+        return OutputMessage.EMPTY;
     }
 }

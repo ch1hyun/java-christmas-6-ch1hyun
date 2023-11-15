@@ -65,13 +65,15 @@ public class Event {
     }
 
     private void addWeekdayEventItem(List<DiscountItem> discountList, OrderList orderList) {
-        if (weekdayEvent.isAcitve()) {
+        if (weekdayEvent.isAcitve()
+                && orderList.getCountMatchMenuGroup(weekdayEvent.getMenuBoard()) > EventConstant.ZERO) {
             discountList.add(DiscountItem.of(weekdayEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.디저트)));
         }
     }
 
     private void addWeekendEventItem(List<DiscountItem> discountList, OrderList orderList) {
-        if (weekendEvent.isAcitve()) {
+        if (weekendEvent.isAcitve()
+                && orderList.getCountMatchMenuGroup(weekendEvent.getMenuBoard()) > EventConstant.ZERO) {
             discountList.add(DiscountItem.of(weekendEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.메인)));
         }
     }

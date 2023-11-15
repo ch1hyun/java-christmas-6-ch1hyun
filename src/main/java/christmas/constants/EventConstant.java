@@ -10,6 +10,7 @@ public class EventConstant {
     public static final Integer COUNT_LOWER = 1;
     public static final Integer COUNT_UPPER = 20;
     public static final Integer FIRST_ITEM = 0;
+    public static final Integer ZERO = 0;
     public static final Integer EVENT_ACTIVE_CRITERIA = 10000;
     public static final Boolean TRUE = true;
     public static final Boolean FALSE = false;
