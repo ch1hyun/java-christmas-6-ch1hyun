@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Week {
-    평일(Arrays.asList(Day.일, Day.월, Day.화, Day.수, Day.목)),
-    주말(Arrays.asList(Day.금, Day.토)),
+    평일(Arrays.asList(Day.월, Day.화, Day.수, Day.목, Day.금)),
+    주말(Arrays.asList(Day.토, Day.일)),
     특별(Arrays.asList(Day.일, Day.크리스마스)),
     디데이(Arrays.asList(Day.첫날, Day.크리스마스));
 

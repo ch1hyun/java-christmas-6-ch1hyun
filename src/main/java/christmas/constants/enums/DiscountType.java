@@ -6,6 +6,7 @@ public enum DiscountType {
     주말("주말 할인", Week.주말, 2_023, 2_023),
     특별("특별 할인", Week.특별, 1_000, 0);
 
+    private static final Integer ONE = 1;
     private final String name;
     private final Week week;
     private final Integer startAmount;
@@ -38,6 +39,6 @@ public enum DiscountType {
     }
 
     public Integer getAmount(Integer number) {
-        return getStartAmount() + getOffsetAmount() * (number - 1);
+        return getStartAmount() + getOffsetAmount() * (number - ONE);
     }
 }

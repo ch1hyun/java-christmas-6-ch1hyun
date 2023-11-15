@@ -33,18 +33,18 @@ public class EventController {
     public EventController() {}
 
     public void proceedEvent(OrderController orderController) {
-        requestDiscountEvent(orderController.getOrderDate());
+        requestDiscountEvent(orderController.getOrderDate(), orderController.getOrderList());
         requestPresentationEvent(orderController.getOrderAmount());
         generateEvent(orderController.getOrderAmount());
         requestRewardAmount();
         requestBadge();
     }
 
-    private void requestDiscountEvent(OrderDate orderDate) {
+    private void requestDiscountEvent(OrderDate orderDate, OrderList orderList) {
         List<DiscountItem> discountList = new ArrayList<>();
 
-        requestWeekdayEvent(orderDate, discountList);
-        requestWeekendEvent(orderDate, discountList);
+        requestWeekdayEvent(orderDate, orderList, discountList);
+        requestWeekendEvent(orderDate, orderList, discountList);
         requestSpecialEvent(orderDate, discountList);
         requestDDayEvent(orderDate, discountList);
 
@@ -55,19 +55,19 @@ public class EventController {
         this.discountList = DiscountList.from(discountList);
     }
 
-    private void requestWeekdayEvent(OrderDate orderDate, List<DiscountItem> discountList) {
+    private void requestWeekdayEvent(OrderDate orderDate, OrderList orderList, List<DiscountItem> discountList) {
         weekdayEvent = WeekdayEvent.from(orderDate);
 
         if (weekdayEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(weekdayEvent.getDiscountType(), orderDate.getDate()));
+            discountList.add(DiscountItem.of(weekdayEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.디저트)));
         }
     }
 
-    private void requestWeekendEvent(OrderDate orderDate, List<DiscountItem> discountList) {
+    private void requestWeekendEvent(OrderDate orderDate, OrderList orderList, List<DiscountItem> discountList) {
         weekendEvent = WeekendEvent.from(orderDate);
 
         if (weekendEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(weekendEvent.getDiscountType(), orderDate.getDate()));
+            discountList.add(DiscountItem.of(weekendEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.메인)));
         }
     }
 
@@ -114,10 +114,7 @@ public class EventController {
         OutputView.printPresentationItem(presentationEvent.getMenu());
     }
 
-    public void showResultRewardList(OrderController orderController) {
-        OrderList orderList = orderController.getOrderList();
-        OrderDate orderDate = orderController.getOrderDate();
-
+    public void showResultRewardList(OrderList orderList, OrderDate orderDate) {
         OutputView.printRewardList(
                 event.toString(
                         orderList.getCountMatchMenuGroup(MenuBoard.디저트),

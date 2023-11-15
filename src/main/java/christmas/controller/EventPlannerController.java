@@ -46,7 +46,7 @@ public class EventPlannerController implements EntryController {
         orderController.showResultOrderList();
         orderController.showResultSubTotal();
         eventController.showResultPresentation();
-        eventController.showResultRewardList(orderController.getOrderDate());
+        eventController.showResultRewardList(orderController.getOrderList(), orderController.getOrderDate());
         eventController.showResultRewardAmount();
         calculateController.showResultTotal();
         eventController.showResultBadge();
