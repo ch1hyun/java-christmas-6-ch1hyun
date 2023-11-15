@@ -20,7 +20,7 @@ public class Validator {
         }
     }
 
-    public static void validateSingleMenuItem(MenuItem menuItem, String errorMessage) {
+    public static void validateSingleMenuItemIsBeverage(MenuItem menuItem, String errorMessage) {
         if (MenuBoard.음료.contains(
                 Menu.valueOf(menuItem.getName())
         )) {

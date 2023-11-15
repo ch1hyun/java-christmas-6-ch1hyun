@@ -27,7 +27,7 @@ public class OrderList {
         );
 
         if (countMenu == 1) {
-            Validator.validateSingleMenuItem(orderList.get(0), ErrorMessage.INVALID_ORDER.getMessage());
+            Validator.validateSingleMenuItemIsBeverage(orderList.get(0), ErrorMessage.INVALID_ORDER.getMessage());
         }
 
         Validator.validateNumberInRange(
