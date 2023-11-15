@@ -2,9 +2,6 @@ package christmas.model.event;
 
 import christmas.constants.EventConstant;
 import christmas.constants.OutputMessage;
-import christmas.constants.enums.Day;
-import christmas.constants.enums.DiscountType;
-import christmas.constants.enums.PresentationType;
 import christmas.model.OrderAmount;
 import christmas.model.PresentationItem;
 import christmas.util.Formatter;

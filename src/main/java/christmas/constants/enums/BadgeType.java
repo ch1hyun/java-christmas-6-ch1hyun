@@ -1,8 +1,6 @@
 package christmas.constants.enums;
 
 import christmas.model.RewardAmount;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public enum BadgeType {
     NULL("없음", 0),
