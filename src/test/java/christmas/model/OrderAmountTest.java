@@ -40,7 +40,7 @@ public class OrderAmountTest {
                 Arguments.arguments("양송이수프-1", 1, "6,000원"),
                 Arguments.arguments("크리스마스파스타-3", 10, "66,031원"),
                 Arguments.arguments("크리스마스파스타-4", 24, "87,608원"),
-                Arguments.arguments("티본스테이크-10", 25, "546,600원")
+                Arguments.arguments("티본스테이크-10", 25, "545,600원")
         );
     }
 
