@@ -24,7 +24,7 @@ public class EventPlannerController implements EntryController {
         requestOrder();
         requestEvent();
         requesetCalculate();
-        requestResult();
+        requestShowResult();
     }
 
     private void requestOrder() {
@@ -44,13 +44,13 @@ public class EventPlannerController implements EntryController {
         );
     }
 
-    private void requestResult() {
-        orderController.requestResultOrderList();
-        orderController.requestResultSubTotal();
-        eventController.requestResultPresentation();
-        eventController.requestResultRewardList();
-        eventController.requestResultRewardAmount();
-        calculateController.requestResultTotal();
-        eventController.requestResultBadge();
+    private void requestShowResult() {
+        orderController.showResultOrderList();
+        orderController.showResultSubTotal();
+        eventController.showResultPresentation();
+        eventController.showResultRewardList(orderController.getOrderDate());
+        eventController.showResultRewardAmount();
+        calculateController.showResultTotal();
+        eventController.showResultBadge();
     }
 }

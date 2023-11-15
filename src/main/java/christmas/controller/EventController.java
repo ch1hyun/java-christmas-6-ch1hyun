@@ -12,6 +12,7 @@ import christmas.model.event.PresentationEvent;
 import christmas.model.event.SpecialEvent;
 import christmas.model.event.WeekdayEvent;
 import christmas.model.event.WeekendEvent;
+import christmas.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class EventController {
     public void proceedEvent(OrderDate orderDate, OrderAmount orderAmount) {
         requestDiscountEvent(orderDate);
         requestPresentationEvent(orderAmount);
+        generateEvent();
         requestRewardAmount();
         requestBadge();
     }
@@ -44,6 +46,10 @@ public class EventController {
         requestSpecialEvent(orderDate, discountList);
         requestDDayEvent(orderDate, discountList);
 
+        generateDiscountList(discountList);
+    }
+
+    private void generateDiscountList(List<DiscountItem> discountList) {
         this.discountList = DiscountList.from(discountList);
     }
 
@@ -83,11 +89,33 @@ public class EventController {
         presentationEvent = PresentationEvent.from(orderAmount);
     }
 
+    private void generateEvent() {
+        event = Event.of(
+                dDayEvent,
+                weekdayEvent,
+                weekendEvent,
+                specialEvent,
+                presentationEvent
+        );
+    }
+
     private void requestRewardAmount() {
         rewardAmount = RewardAmount.of(discountList, presentationEvent.getPresentationItem());
     }
 
     private void requestBadge() {
         badge = Badge.from(rewardAmount);
+    }
+
+    public void showResultPresentation() {
+        OutputView.printPresentationItem(presentationEvent.getMenu());
+    }
+
+    public void showResultRewardList(OrderDate orderDate) {
+        OutputView.printRewardList(event.toString(orderDate.getDate()));
+    }
+
+    public void showResultRewardAmount() {
+        OutputView.printRewardAmount(rewardAmount.toString());
     }
 }

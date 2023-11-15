@@ -32,6 +32,10 @@ public class PresentationEvent {
         return presentationItem;
     }
 
+    public String getMenu() {
+        return presentationItem.toString();
+    }
+
     public Boolean isAcitve() {
         return activation.isActive();
     }

@@ -52,11 +52,11 @@ public class OrderController {
         orderAmount = OrderAmount.from(orderList.getAmount());
     }
 
-    public void requestResultOrderList() {
+    public void showResultOrderList() {
         OutputView.printOrderList(orderList.toString());
     }
 
-    public void requestResultSubTotal() {
+    public void showResultSubTotal() {
         OutputView.printTotalAmountBeforeDiscount(orderAmount.toString());
     }
 
