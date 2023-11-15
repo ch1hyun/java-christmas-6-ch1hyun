@@ -25,7 +25,7 @@ public class InputView {
 
         try {
             return Converter.parseStringToMenuList(Console.readLine());
-        } catch (IllegalArgumentException e) {
+        } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
     }

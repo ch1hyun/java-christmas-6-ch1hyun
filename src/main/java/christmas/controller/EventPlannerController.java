@@ -43,6 +43,8 @@ public class EventPlannerController implements EntryController {
     }
 
     private void requestShowResult() {
+        OutputView.printStartResult();
+
         orderController.showResultOrderList();
         orderController.showResultSubTotal();
         eventController.showResultPresentation();
