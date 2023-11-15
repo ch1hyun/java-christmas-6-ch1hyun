@@ -45,24 +45,25 @@ public class Event {
     }
 
     public String toString(Integer countMatchMenuDessert, Integer countMatchMenuMain, Integer date) {
+        if (isActive()) {
+            String result = String.join(
+                    OutputMessage.LINE_FEED,
+                    List.of(
+                                    dDayEvent.toString(date),
+                                    weekdayEvent.toString(countMatchMenuDessert),
+                                    weekendEvent.toString(countMatchMenuMain),
+                                    specialEvent.toString(date),
+                                    presentationEvent.toString()
+                            ).stream()
+                            .filter(str -> !str.isBlank())
+                            .toList()
+            );
 
-        String result = String.join(
-                OutputMessage.LINE_FEED,
-                List.of(
-                    dDayEvent.toString(date),
-                    weekdayEvent.toString(countMatchMenuDessert),
-                    weekendEvent.toString(countMatchMenuMain),
-                    specialEvent.toString(date),
-                    presentationEvent.toString()
-                ).stream()
-                        .filter(str -> !str.isBlank())
-                        .toList()
-        );
-
-        if (result.isBlank()) {
-            return OutputMessage.NOTHING;
+            if (!result.isBlank()) {
+                return result;
+            }
         }
 
-        return result;
+        return OutputMessage.NOTHING;
     }
 }
