@@ -7,14 +7,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Event {
+    private final Activation activation;
     private final DDayEvent dDayEvent;
     private final WeekdayEvent weekdayEvent;
     private final WeekendEvent weekendEvent;
     private final SpecialEvent specialEvent;
     private final PresentationEvent presentationEvent;
 
-    private Event(DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
+    private Event(Activation activation, DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
                  PresentationEvent presentationEvent) {
+        this.activation = activation;
         this.dDayEvent = dDayEvent;
         this.weekdayEvent = weekdayEvent;
         this.weekendEvent = weekendEvent;
@@ -22,9 +24,16 @@ public class Event {
         this.presentationEvent = presentationEvent;
     }
 
-    public static Event of(DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
+    public static Event of(Integer subTotal, DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
                            PresentationEvent presentationEvent) {
+        Boolean active = false;
+
+        if (isSubTotalGreaterThanCriteria(subTotal)) {
+            active = true;
+        }
+
         return new Event(
+                Activation.from(active),
                 dDayEvent,
                 weekdayEvent,
                 weekendEvent,
@@ -33,8 +42,17 @@ public class Event {
         );
     }
 
+    private static Boolean isSubTotalGreaterThanCriteria(Integer subTotal) {
+        return subTotal >= 10000;
+    }
+
+    public Boolean isActive() {
+        return activation.isActive();
+    }
+
     public String toString(Integer countMatchMenuDessert, Integer countMatchMenuMain, Integer date) {
-        return String.join(
+
+        String result = String.join(
                 OutputMessage.LINE_FEED,
                 List.of(
                     dDayEvent.toString(date),
@@ -46,5 +64,11 @@ public class Event {
                         .filter(str -> !str.isBlank())
                         .toList()
         );
+
+        if (result.isBlank()) {
+            return OutputMessage.NOTHING;
+        }
+
+        return result;
     }
 }
