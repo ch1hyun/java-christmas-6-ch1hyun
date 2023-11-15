@@ -18,7 +18,7 @@ public class SpecialEvent {
     public static SpecialEvent from(OrderDate orderDate) {
         Boolean active = EventConstant.FALSE;
 
-        if (orderDate.isDayGroup(DiscountType.특별)) {
+        if (orderDate.isDayGroup(DiscountType.특별) || orderDate.isDateGroup(DiscountType.특별)) {
             active = EventConstant.TRUE;
         }
 
