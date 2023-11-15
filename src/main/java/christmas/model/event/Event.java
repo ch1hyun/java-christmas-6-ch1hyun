@@ -1,9 +1,7 @@
 package christmas.model.event;
 
 import christmas.constants.OutputMessage;
-import christmas.model.OrderDate;
-import christmas.model.OrderList;
-import java.util.Arrays;
+import christmas.model.OrderAmount;
 import java.util.List;
 
 public class Event {
@@ -24,11 +22,11 @@ public class Event {
         this.presentationEvent = presentationEvent;
     }
 
-    public static Event of(Integer subTotal, DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
+    public static Event of(OrderAmount orderAmount, DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
                            PresentationEvent presentationEvent) {
         Boolean active = false;
 
-        if (isSubTotalGreaterThanCriteria(subTotal)) {
+        if (orderAmount.isGreaterThanOrEqualTo(10000)) {
             active = true;
         }
 
@@ -40,10 +38,6 @@ public class Event {
                 specialEvent,
                 presentationEvent
         );
-    }
-
-    private static Boolean isSubTotalGreaterThanCriteria(Integer subTotal) {
-        return subTotal >= 10000;
     }
 
     public Boolean isActive() {

@@ -33,14 +33,14 @@ public class EventController {
     public EventController() {}
 
     public void proceedEvent(OrderController orderController) {
-        requestDiscountEvent(orderController.getOrderList(), orderController.getOrderDate());
+        requestDiscountEvent(orderController.getOrderDate());
         requestPresentationEvent(orderController.getOrderAmount());
-        generateEvent();
+        generateEvent(orderController.getOrderAmount());
         requestRewardAmount();
         requestBadge();
     }
 
-    private void requestDiscountEvent(OrderList orderList, OrderDate orderDate) {
+    private void requestDiscountEvent(OrderDate orderDate) {
         List<DiscountItem> discountList = new ArrayList<>();
 
         requestWeekdayEvent(orderDate, discountList);
@@ -91,8 +91,9 @@ public class EventController {
         presentationEvent = PresentationEvent.from(orderAmount);
     }
 
-    private void generateEvent() {
+    private void generateEvent(OrderAmount orderAmount) {
         event = Event.of(
+                orderAmount,
                 dDayEvent,
                 weekdayEvent,
                 weekendEvent,
