@@ -2,7 +2,13 @@ package christmas.model.event;
 
 import christmas.constants.EventConstant;
 import christmas.constants.OutputMessage;
+import christmas.constants.enums.MenuBoard;
+import christmas.model.DiscountItem;
+import christmas.model.DiscountList;
 import christmas.model.OrderAmount;
+import christmas.model.OrderDate;
+import christmas.model.OrderList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -43,6 +49,43 @@ public class Event {
 
     public Boolean isActive() {
         return activation.isActive();
+    }
+
+    public DiscountList createDiscountList(OrderList orderList, OrderDate orderDate) {
+        List<DiscountItem> discountList = new ArrayList<>();
+
+        if (isActive()) {
+            addDDayEventItem(discountList, orderDate);
+            addWeekdayEventItem(discountList, orderList);
+            addWeekendEventItem(discountList, orderList);
+            addSpecialEventItem(discountList, orderDate);
+        }
+
+        return DiscountList.from(discountList);
+    }
+
+    private void addWeekdayEventItem(List<DiscountItem> discountList, OrderList orderList) {
+        if (weekdayEvent.isAcitve()) {
+            discountList.add(DiscountItem.of(weekdayEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.디저트)));
+        }
+    }
+
+    private void addWeekendEventItem(List<DiscountItem> discountList, OrderList orderList) {
+        if (weekendEvent.isAcitve()) {
+            discountList.add(DiscountItem.of(weekendEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.메인)));
+        }
+    }
+
+    private void addSpecialEventItem(List<DiscountItem> discountList, OrderDate orderDate) {
+        if (specialEvent.isAcitve()) {
+            discountList.add(DiscountItem.of(specialEvent.getDiscountType(), orderDate.getDate()));
+        }
+    }
+
+    private void addDDayEventItem(List<DiscountItem> discountList, OrderDate orderDate) {
+        if (dDayEvent.isAcitve()) {
+            discountList.add(DiscountItem.of(dDayEvent.getDiscountType(), orderDate.getDate()));
+        }
     }
 
     public String toString(Integer countMatchMenuDessert, Integer countMatchMenuMain, Integer date) {

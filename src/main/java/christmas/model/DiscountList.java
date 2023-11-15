@@ -26,6 +26,10 @@ public class DiscountList {
 
     @Override
     public String toString() {
+        if (isEmpty()) {
+            return OutputMessage.NOTHING;
+        }
+        
         return String.join(
                 OutputMessage.LINE_FEED,
                 discountList.stream()

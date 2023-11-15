@@ -2,8 +2,6 @@ package christmas.controller;
 
 import christmas.constants.enums.MenuBoard;
 import christmas.model.Badge;
-import christmas.model.DiscountItem;
-import christmas.model.DiscountList;
 import christmas.model.OrderAmount;
 import christmas.model.OrderDate;
 import christmas.model.OrderList;
@@ -15,8 +13,6 @@ import christmas.model.event.SpecialEvent;
 import christmas.model.event.WeekdayEvent;
 import christmas.model.event.WeekendEvent;
 import christmas.view.OutputView;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EventController {
     private Event event;
@@ -26,65 +22,40 @@ public class EventController {
     private SpecialEvent specialEvent;
     private PresentationEvent presentationEvent;
 
-    private DiscountList discountList;
     private RewardAmount rewardAmount;
     private Badge badge;
 
     public EventController() {}
 
     public void proceedEvent(OrderController orderController) {
-        requestDiscountEvent(orderController.getOrderDate(), orderController.getOrderList());
+        requestDiscountEvent(orderController.getOrderDate());
         requestPresentationEvent(orderController.getOrderAmount());
         generateEvent(orderController.getOrderAmount());
-        requestRewardAmount();
+        requestRewardAmount(orderController.getOrderList(), orderController.getOrderDate());
         requestBadge();
     }
 
-    private void requestDiscountEvent(OrderDate orderDate, OrderList orderList) {
-        List<DiscountItem> discountList = new ArrayList<>();
-
-        requestWeekdayEvent(orderDate, orderList, discountList);
-        requestWeekendEvent(orderDate, orderList, discountList);
-        requestSpecialEvent(orderDate, discountList);
-        requestDDayEvent(orderDate, discountList);
-
-        generateDiscountList(discountList);
+    private void requestDiscountEvent(OrderDate orderDate) {
+        requestWeekdayEvent(orderDate);
+        requestWeekendEvent(orderDate);
+        requestSpecialEvent(orderDate);
+        requestDDayEvent(orderDate);
     }
 
-    private void generateDiscountList(List<DiscountItem> discountList) {
-        this.discountList = DiscountList.from(discountList);
-    }
-
-    private void requestWeekdayEvent(OrderDate orderDate, OrderList orderList, List<DiscountItem> discountList) {
+    private void requestWeekdayEvent(OrderDate orderDate) {
         weekdayEvent = WeekdayEvent.from(orderDate);
-
-        if (weekdayEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(weekdayEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.디저트)));
-        }
     }
 
-    private void requestWeekendEvent(OrderDate orderDate, OrderList orderList, List<DiscountItem> discountList) {
+    private void requestWeekendEvent(OrderDate orderDate) {
         weekendEvent = WeekendEvent.from(orderDate);
-
-        if (weekendEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(weekendEvent.getDiscountType(), orderList.getCountMatchMenuGroup(MenuBoard.메인)));
-        }
     }
 
-    private void requestSpecialEvent(OrderDate orderDate, List<DiscountItem> discountList) {
+    private void requestSpecialEvent(OrderDate orderDate) {
         specialEvent = SpecialEvent.from(orderDate);
-
-        if (specialEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(specialEvent.getDiscountType(), orderDate.getDate()));
-        }
     }
 
-    private void requestDDayEvent(OrderDate orderDate, List<DiscountItem> discountList) {
+    private void requestDDayEvent(OrderDate orderDate) {
         dDayEvent = DDayEvent.from(orderDate);
-
-        if (dDayEvent.isAcitve()) {
-            discountList.add(DiscountItem.of(dDayEvent.getDiscountType(), orderDate.getDate()));
-        }
     }
 
     private void requestPresentationEvent(OrderAmount orderAmount) {
@@ -102,8 +73,8 @@ public class EventController {
         );
     }
 
-    private void requestRewardAmount() {
-        rewardAmount = RewardAmount.of(discountList, presentationEvent.getPresentationItem());
+    private void requestRewardAmount(OrderList orderList, OrderDate orderDate) {
+        rewardAmount = RewardAmount.of(event.createDiscountList(orderList, orderDate), presentationEvent.getPresentationItem());
     }
 
     private void requestBadge() {
