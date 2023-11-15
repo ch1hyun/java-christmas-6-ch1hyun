@@ -40,6 +40,7 @@ public class EventPlannerController implements EntryController {
 
     private void requesetCalculate() {
         calculateController.proceedCalculate(
+                orderController.getOrderAmount(),
                 eventController.getRewardAmount()
         );
     }

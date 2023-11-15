@@ -118,4 +118,12 @@ public class EventController {
     public void showResultRewardAmount() {
         OutputView.printRewardAmount(rewardAmount.toString());
     }
+
+    public void showResultBadge() {
+        OutputView.printBadge(badge.toString());
+    }
+
+    public RewardAmount getRewardAmount() {
+        return rewardAmount;
+    }
 }

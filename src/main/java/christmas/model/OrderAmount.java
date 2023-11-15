@@ -1,8 +1,6 @@
 package christmas.model;
 
-import christmas.constants.enums.ErrorMessage;
 import christmas.util.Formatter;
-import christmas.util.Validator;
 
 public class OrderAmount {
     private final Integer subTotal;
@@ -19,8 +17,10 @@ public class OrderAmount {
         return subTotal >= amount;
     }
 
-    public Integer getTotalAmount(DiscountList discountList) {
-        return subTotal - discountList.getAmount();
+    public String getTotalAmount(RewardAmount rewardAmount) {
+        return Formatter.formatAmount(
+                subTotal - rewardAmount.getDiscountAmount()
+        );
     }
 
     @Override
