@@ -9,11 +9,6 @@
 ### 개발 스택
 
 Spring Boot - JDK 17<br>
-
-<br>
-
-[TOC]
-
 <br>
 
 ------
