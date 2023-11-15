@@ -17,7 +17,7 @@ public class PresentationEventTest {
     private static final OrderAmount object = OrderAmount.from(130_000);
     private static final OrderAmount subject = OrderAmount.from(110_000);
 
-    static Stream<Arguments> orderAmountWithExpectedBool() {
+    static Stream<Arguments> orderAmountWithExpectedActive() {
         return Stream.of(
                 Arguments.arguments(object, EventConstant.TRUE),
                 Arguments.arguments(subject,EventConstant.FALSE)
@@ -25,7 +25,7 @@ public class PresentationEventTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderAmountWithExpectedBool")
+    @MethodSource("orderAmountWithExpectedActive")
     @DisplayName("증정 이벤트는 주문 총금액이 120,000원을 넘어 증정품이 존재하는 경우에만 활성화 됩니다.")
     void 증정_이벤트_금액_테스트(OrderAmount orderAmount, Boolean expected) {
         // given
@@ -62,8 +62,8 @@ public class PresentationEventTest {
 
     @ParameterizedTest
     @MethodSource("orderAmountWithExpectedPrints")
-    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트(OrderAmount orderAmount, String expected) {
+    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트(OrderAmount orderAmount, String expected) {
         // given
         PresentationEvent presentationEvent = PresentationEvent.from(orderAmount);
 

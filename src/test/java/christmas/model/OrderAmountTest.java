@@ -17,7 +17,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class OrderAmountTest {
-    static Stream<Arguments> subTotalAndAmountWithExpectedBool() {
+    static Stream<Arguments> subTotalAndAmountWithExpectedResult() {
         return Stream.of(
                 Arguments.arguments(10_000, 5_000, EventConstant.TRUE),
                 Arguments.arguments(10_000, 15_000, EventConstant.FALSE)
@@ -25,7 +25,7 @@ public class OrderAmountTest {
     }
 
     @ParameterizedTest
-    @MethodSource("subTotalAndAmountWithExpectedBool")
+    @MethodSource("subTotalAndAmountWithExpectedResult")
     @DisplayName("할인 전 총금액과 비교 금액이 주어졌을 때 더 크거나 같은지 판단할 수 있어야 합니다.")
     void 금액_비교_테스트(Integer subTotal, Integer amount, Boolean expected) {
         // given
@@ -70,8 +70,8 @@ public class OrderAmountTest {
     }
 
     @Test
-    @DisplayName("할인 전 총주문 금액이 주어졌을 때 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트() {
+    @DisplayName("플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트() {
         // given
         OrderAmount orderAmount = OrderAmount.from(10_000);
 

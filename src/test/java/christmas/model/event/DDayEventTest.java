@@ -15,7 +15,7 @@ public class DDayEventTest {
     private static final OrderDate object = OrderDate.from(14);
     private static final OrderDate subject = OrderDate.from(28);
 
-    static Stream<Arguments> orderDateWithExpectedBool() {
+    static Stream<Arguments> orderDateWithExpectedActive() {
         return Stream.of(
                 Arguments.arguments(object, EventConstant.TRUE),
                 Arguments.arguments(subject,EventConstant.FALSE)
@@ -23,7 +23,7 @@ public class DDayEventTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderDateWithExpectedBool")
+    @MethodSource("orderDateWithExpectedActive")
     @DisplayName("크리스마스 디데이 이벤트는 1 ~ 25 사이의 날짜에만 활성화 됩니다.")
     void 크리스마스_이벤트_날짜_테스트(OrderDate orderDate, Boolean expected) {
         // given
@@ -43,7 +43,7 @@ public class DDayEventTest {
                 .isEqualTo(DiscountType.디데이); // then
     }
 
-    static Stream<Arguments> orderDateWithExpectedString() {
+    static Stream<Arguments> orderDateWithExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(object, "크리스마스 디데이 할인: -2,300원"),
                 Arguments.arguments(subject, "")
@@ -51,9 +51,9 @@ public class DDayEventTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderDateWithExpectedString")
-    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트(OrderDate orderDate, String expected) {
+    @MethodSource("orderDateWithExpectedPrints")
+    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트(OrderDate orderDate, String expected) {
         // given
         DDayEvent dDayEvent = DDayEvent.from(orderDate);
 

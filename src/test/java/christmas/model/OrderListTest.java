@@ -129,8 +129,8 @@ public class OrderListTest {
     }
 
     @Test
-    @DisplayName("플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트() {
+    @DisplayName("플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트() {
         // given
         OrderList orderList = OrderList.from(
                 List.of(

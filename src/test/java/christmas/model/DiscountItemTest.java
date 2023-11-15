@@ -28,7 +28,7 @@ public class DiscountItemTest {
                 .isEqualTo(expectedAmount); // then
     }
 
-    static Stream<Arguments> discountTypeAndNumberWithExpectedString() {
+    static Stream<Arguments> discountTypeAndNumberWithExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(DiscountType.주말, 4, "주말 할인: -8,092원"),
                 Arguments.arguments(DiscountType.평일, 10, "평일 할인: -20,230원"),
@@ -38,9 +38,9 @@ public class DiscountItemTest {
     }
 
     @ParameterizedTest
-    @MethodSource("discountTypeAndNumberWithExpectedString")
-    @DisplayName("할인 타입과 날짜 또는 개수가 주어졌을 때 플래너가 요구하는 형식으로 출력해야 합니다.")
-    void 타입과_숫자가_주어졌을때_반환_문자열_테스트(DiscountType discountType, Integer number, String expected) {
+    @MethodSource("discountTypeAndNumberWithExpectedPrints")
+    @DisplayName("할인 타입과 날짜 또는 개수가 주어졌을 때 플래너가 요구하는 형식으로 반환해야 합니다.")
+    void 반환_메시지_형식_테스트(DiscountType discountType, Integer number, String expected) {
         // given
         DiscountItem discountItem = DiscountItem.of(discountType, number);
 

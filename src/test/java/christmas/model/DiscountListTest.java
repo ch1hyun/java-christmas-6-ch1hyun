@@ -38,7 +38,7 @@ public class DiscountListTest {
                 .isEqualTo(12_492); // then
     }
 
-    static Stream<Arguments> discountItemsWithExpectedString() {
+    static Stream<Arguments> discountItemsWithExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(List.of(), "없음"),
                 Arguments.arguments(List.of(
@@ -50,9 +50,9 @@ public class DiscountListTest {
     }
 
     @ParameterizedTest
-    @MethodSource("discountItemsWithExpectedString")
-    @DisplayName("할인 아이템이 주어졌을 때 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 할인_리스트_출력_테스트(List<DiscountItem> discountItemList, String expected) {
+    @MethodSource("discountItemsWithExpectedPrints")
+    @DisplayName("플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트(List<DiscountItem> discountItemList, String expected) {
         // given
         DiscountList discountList = DiscountList.from(discountItemList);
 

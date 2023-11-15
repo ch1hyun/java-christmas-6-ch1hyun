@@ -27,7 +27,7 @@ public class PresentationItemTest {
                 .isEqualTo(expected); // then
     }
 
-    static Stream<Arguments> orderAmountWithExpectedBool() {
+    static Stream<Arguments> orderAmountWithExpectedResult() {
         return Stream.of(
                 Arguments.arguments(object, EventConstant.TRUE),
                 Arguments.arguments(subject, EventConstant.FALSE)
@@ -35,14 +35,14 @@ public class PresentationItemTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderAmountWithExpectedBool")
+    @MethodSource("orderAmountWithExpectedResult")
     @DisplayName("증정품이 없는지 판단할 수 있어야 합니다.")
     void 증정품이_비어있는지_테스트(OrderAmount orderAmount, Boolean expected) { // given
         Assertions.assertThat(PresentationItem.from(orderAmount).isEmpty()) // when
                 .isEqualTo(expected); // then
     }
 
-    static Stream<Arguments> orderAmountWithExpectedString() {
+    static Stream<Arguments> orderAmountWithExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(object, "없음"),
                 Arguments.arguments(subject, "샴페인 1개")
@@ -50,7 +50,7 @@ public class PresentationItemTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderAmountWithExpectedString")
+    @MethodSource("orderAmountWithExpectedPrints")
     @DisplayName("플래너가 요구하는 형식으로 출력되어야 합니다.")
     void 출력_형식_테스트(OrderAmount orderAmount, String expected) { // given
         Assertions.assertThat(PresentationItem.from(orderAmount).toString()) // when

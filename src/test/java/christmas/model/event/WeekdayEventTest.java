@@ -16,7 +16,7 @@ public class WeekdayEventTest {
     private static final OrderDate object = OrderDate.from(20);
     private static final OrderDate subject = OrderDate.from(23);
 
-    static Stream<Arguments> orderDateWithExpectedBool() {
+    static Stream<Arguments> orderDateWithExpectedActive() {
         return Stream.of(
                 Arguments.arguments(object, EventConstant.TRUE),
                 Arguments.arguments(subject,EventConstant.FALSE),
@@ -25,7 +25,7 @@ public class WeekdayEventTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderDateWithExpectedBool")
+    @MethodSource("orderDateWithExpectedActive")
     @DisplayName("평일 이벤트는 해당 날짜가 평일일 경우에만 활성화 됩니다.")
     void 평일_이벤트_날짜_테스트(OrderDate orderDate, Boolean expected) {
         // given
@@ -55,7 +55,7 @@ public class WeekdayEventTest {
                 .isEqualTo(MenuBoard.디저트); // then
     }
 
-    static Stream<Arguments> orderDateAndCountWithExpectedString() {
+    static Stream<Arguments> orderDateAndCountWithExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(object, 4, "평일 할인: -8,092원"),
                 Arguments.arguments(subject, 11, "")
@@ -63,9 +63,9 @@ public class WeekdayEventTest {
     }
 
     @ParameterizedTest
-    @MethodSource("orderDateAndCountWithExpectedString")
-    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트(OrderDate orderDate, Integer count, String expected) {
+    @MethodSource("orderDateAndCountWithExpectedPrints")
+    @DisplayName("이벤트 활성화 여부에 따라 반환 값이 달라야 합니다. 활성화인 경우 플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트(OrderDate orderDate, Integer count, String expected) {
         // given
         WeekdayEvent weekdayEvent = WeekdayEvent.from(orderDate);
 

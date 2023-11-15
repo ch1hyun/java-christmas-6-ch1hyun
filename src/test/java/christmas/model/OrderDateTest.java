@@ -21,7 +21,7 @@ public class OrderDateTest {
                 .hasMessageContaining(ErrorMessage.INVALID_DATE.getMessage()); // then
     }
 
-    static Stream<Arguments> dateAndDiscountTypeWithExpectedBool() {
+    static Stream<Arguments> dateAndDiscountTypeWithExpectedResult() {
         return Stream.of(
                 Arguments.arguments(1, DiscountType.평일, DiscountType.디데이, EventConstant.TRUE, EventConstant.TRUE),
                 Arguments.arguments(3, DiscountType.평일, DiscountType.디데이, EventConstant.FALSE, EventConstant.TRUE),
@@ -32,7 +32,7 @@ public class OrderDateTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dateAndDiscountTypeWithExpectedBool")
+    @MethodSource("dateAndDiscountTypeWithExpectedResult")
     @DisplayName("날짜와 할인 타입이 주어졌을 때 적용가능한지 판단할 수 있어야 합니다.")
     void 할인_타입_적용가능성_테스트(Integer date, DiscountType dayDiscountType, DiscountType dateDiscountType, Boolean dayExpected, Boolean dateExpected) {
         // given

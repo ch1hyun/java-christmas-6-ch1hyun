@@ -95,7 +95,7 @@ public class EventTest {
     @ParameterizedTest
     @MethodSource("orderAmountWithExpectedPrints")
     @DisplayName("활성화 여부에 따라 반환 메시지가 달라져야 합니다. 활성화일 시 플래너가 요구하는 형식으로 반환되어야 합니다.")
-    void 출력_형식_테스트(OrderAmount orderAmount, String expected) {
+    void 반환_메시지_형식_테스트(OrderAmount orderAmount, String expected) {
         // given
         Event event = Event.of(
                 orderAmount,

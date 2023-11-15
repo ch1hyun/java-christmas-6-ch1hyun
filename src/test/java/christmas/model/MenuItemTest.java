@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class MenuItemTest {
-    static Stream<Arguments> menuItemAndMenuBoardWithExpectedBool() {
+    static Stream<Arguments> menuItemAndMenuBoardWithExpectedResult() {
         return Stream.of(
                 Arguments.arguments(MenuItem.of("양송이수프", 1), MenuBoard.애피타이저, EventConstant.TRUE),
                 Arguments.arguments(MenuItem.of("티본스테이크", 1), MenuBoard.메인, EventConstant.TRUE),
@@ -21,7 +21,7 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
-    @MethodSource("menuItemAndMenuBoardWithExpectedBool")
+    @MethodSource("menuItemAndMenuBoardWithExpectedResult")
     @DisplayName("메뉴 아이템이 주어졌을 때 카테고리에 속하는지 판별할 수 있어야 합니다.")
     void 카테고리에_속하는지_테스트(MenuItem menuItem, MenuBoard menuBoard, Boolean expected) { // given
         Assertions.assertThat(menuItem.isGroup(menuBoard)) // when
@@ -58,7 +58,7 @@ public class MenuItemTest {
                 .isEqualTo("해산물파스타"); // then
     }
 
-    static Stream<Arguments> menuItemAndExpectedString() {
+    static Stream<Arguments> menuItemAndExpectedPrints() {
         return Stream.of(
                 Arguments.arguments(MenuItem.of("양송이수프", 1), "양송이수프 1개"),
                 Arguments.arguments(MenuItem.of("티본스테이크", 5), "티본스테이크 5개")
@@ -66,9 +66,9 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
-    @MethodSource("menuItemAndExpectedString")
+    @MethodSource("menuItemAndExpectedPrints")
     @DisplayName("메뉴 아이템이 주어졌을 때 플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트(MenuItem menuItem, String expected) { // given
+    void 반환_메시지_형식_테스트(MenuItem menuItem, String expected) { // given
         Assertions.assertThat(menuItem.toString()) // when
                 .isEqualTo(expected); // then
     }

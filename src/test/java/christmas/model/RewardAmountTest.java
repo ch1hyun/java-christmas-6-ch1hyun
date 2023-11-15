@@ -34,7 +34,7 @@ public class RewardAmountTest {
                 .isEqualTo(10_392); // then
     }
 
-    static Stream<Arguments> amountsWithExpectedBool() {
+    static Stream<Arguments> amountsWithExpectedResult() {
         return Stream.of(
                 Arguments.arguments(20_000, EventConstant.TRUE),
                 Arguments.arguments(50_000, EventConstant.FALSE)
@@ -42,7 +42,7 @@ public class RewardAmountTest {
     }
 
     @ParameterizedTest
-    @MethodSource("amountsWithExpectedBool")
+    @MethodSource("amountsWithExpectedResult")
     @DisplayName("주어진 금액보다 크거나 같은지 판단할 수 있어야 합니다.")
     void 크거나_같은지_판단_테스트(Integer amount, Boolean expected) {
         // given
@@ -53,8 +53,8 @@ public class RewardAmountTest {
     }
 
     @Test
-    @DisplayName("플래너가 요구하는 형식으로 출력되어야 합니다.")
-    void 출력_형식_테스트() {
+    @DisplayName("플래너가 요구하는 형식으로 반환되어야 합니다.")
+    void 반환_메시지_형식_테스트() {
         // given
         RewardAmount rewardAmount = RewardAmount.of(discountList, presentationItem);
 
