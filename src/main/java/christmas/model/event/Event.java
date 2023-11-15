@@ -1,5 +1,6 @@
 package christmas.model.event;
 
+import christmas.constants.EventConstant;
 import christmas.constants.OutputMessage;
 import christmas.model.OrderAmount;
 import java.util.List;
@@ -24,10 +25,10 @@ public class Event {
 
     public static Event of(OrderAmount orderAmount, DDayEvent dDayEvent, WeekdayEvent weekdayEvent, WeekendEvent weekendEvent, SpecialEvent specialEvent,
                            PresentationEvent presentationEvent) {
-        Boolean active = false;
+        Boolean active = EventConstant.FALSE;
 
-        if (orderAmount.isGreaterThanOrEqualTo(10000)) {
-            active = true;
+        if (orderAmount.isGreaterThanOrEqualTo(EventConstant.EVENT_ACTIVE_CRITERIA)) {
+            active = EventConstant.TRUE;
         }
 
         return new Event(

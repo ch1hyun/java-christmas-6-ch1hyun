@@ -1,12 +1,12 @@
 package christmas.model.event;
 
+import christmas.constants.EventConstant;
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
 import christmas.model.OrderDate;
 import christmas.util.Formatter;
 
 public class DDayEvent {
-    private static final String EVENT_NAME = "크리스마스 디데이 할인";
     private final Activation activation;
     private final DiscountType discountType;
 
@@ -16,10 +16,10 @@ public class DDayEvent {
     }
 
     public static DDayEvent from(OrderDate orderDate) {
-        Boolean active = false;
+        Boolean active = EventConstant.FALSE;
 
         if (orderDate.isDateGroup(DiscountType.디데이)) {
-            active = true;
+            active = EventConstant.TRUE;
         }
 
         return new DDayEvent(Activation.from(active));
@@ -36,7 +36,7 @@ public class DDayEvent {
     public String toString(Integer date) {
         if (isAcitve()) {
             return Formatter.formatRewardItem(
-                    EVENT_NAME,
+                    EventConstant.DDAY_DISCOUNT_NAME,
                     -discountType.getAmount(date)
             );
         }

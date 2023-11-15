@@ -1,5 +1,7 @@
 package christmas.model.event;
 
+import christmas.constants.EventConstant;
+import christmas.constants.OutputMessage;
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
 import christmas.constants.enums.PresentationType;
@@ -8,7 +10,6 @@ import christmas.model.PresentationItem;
 import christmas.util.Formatter;
 
 public class PresentationEvent {
-    private static final String EVENT_NAME = "증정 이벤트";
     private final Activation activation;
     private final PresentationItem presentationItem;
 
@@ -19,10 +20,10 @@ public class PresentationEvent {
 
     public static PresentationEvent from(OrderAmount orderAmount) {
         PresentationItem presentationItem = PresentationItem.from(orderAmount);
-        Boolean active = true;
+        Boolean active = EventConstant.TRUE;
 
         if (presentationItem.isEmpty()) {
-            active = false;
+            active = EventConstant.FALSE;
         }
 
         return new PresentationEvent(Activation.from(active), presentationItem);
@@ -43,11 +44,11 @@ public class PresentationEvent {
     public String toString() {
         if (isAcitve()) {
             return Formatter.formatRewardItem(
-                    EVENT_NAME,
+                    EventConstant.PRESENTATION_EVENT_NAME,
                     -presentationItem.getAmount()
             );
         }
 
-        return "";
+        return OutputMessage.EMPTY;
     }
 }

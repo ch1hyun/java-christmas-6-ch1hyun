@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.constants.EventConstant;
 import christmas.constants.OutputMessage;
 import christmas.constants.enums.ErrorMessage;
 import christmas.constants.enums.MenuBoard;
@@ -26,13 +27,13 @@ public class OrderList {
             ErrorMessage.INVALID_ORDER.getMessage()
         );
 
-        if (countMenu == 1) {
-            Validator.validateSingleMenuItemIsBeverage(orderList.get(0), ErrorMessage.INVALID_ORDER.getMessage());
+        if (countMenu == EventConstant.COUNT_LOWER) {
+            Validator.validateSingleMenuItemIsBeverage(orderList.get(EventConstant.FIRST_ITEM), ErrorMessage.INVALID_ORDER.getMessage());
         }
 
         Validator.validateNumberInRange(
-                1,
-                20,
+                EventConstant.COUNT_LOWER,
+                EventConstant.COUNT_UPPER,
                 countMenu,
                 ErrorMessage.INVALID_ORDER.getMessage()
         );

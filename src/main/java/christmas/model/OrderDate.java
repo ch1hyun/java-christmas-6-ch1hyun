@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.constants.EventConstant;
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
 import christmas.constants.enums.ErrorMessage;
@@ -23,7 +24,7 @@ public class OrderDate {
     public static OrderDate from(Integer date) {
         validate(date);
 
-        LocalDate localDate = LocalDate.of(2023, 12, date);
+        LocalDate localDate = LocalDate.of(EventConstant.YEAR, EventConstant.MONTH, date);
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
 
         return new OrderDate(date, Day.from(dayOfWeek.getValue()));

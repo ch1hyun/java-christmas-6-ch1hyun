@@ -1,12 +1,12 @@
 package christmas.model.event;
 
+import christmas.constants.EventConstant;
 import christmas.constants.enums.Day;
 import christmas.constants.enums.DiscountType;
 import christmas.model.OrderDate;
 import christmas.util.Formatter;
 
 public class WeekdayEvent {
-    private static final String EVENT_NAME = "평일 할인";
     private final Activation activation;
     private final DiscountType discountType;
 
@@ -16,10 +16,10 @@ public class WeekdayEvent {
     }
 
     public static WeekdayEvent from(OrderDate orderDate) {
-        Boolean active = false;
+        Boolean active = EventConstant.FALSE;
 
         if (orderDate.isDayGroup(DiscountType.평일)) {
-            active = true;
+            active = EventConstant.TRUE;
         }
 
         return new WeekdayEvent(Activation.from(active));
@@ -36,7 +36,7 @@ public class WeekdayEvent {
     public String toString(Integer date) {
         if (isAcitve()) {
             return Formatter.formatRewardItem(
-                    EVENT_NAME,
+                    EventConstant.WEEKDAY_DISCOUNT_NAME,
                     -discountType.getAmount(date)
             );
         }
