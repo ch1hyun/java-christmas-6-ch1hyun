@@ -1,6 +1,8 @@
 package christmas.model.event;
 
 import christmas.constants.OutputMessage;
+import christmas.model.OrderDate;
+import christmas.model.OrderList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,16 +33,18 @@ public class Event {
         );
     }
 
-    public String toString(Integer date) {
+    public String toString(Integer countMatchMenuDessert, Integer countMatchMenuMain, Integer date) {
         return String.join(
                 OutputMessage.LINE_FEED,
                 List.of(
                     dDayEvent.toString(date),
-                    weekdayEvent.toString(date),
-                    weekendEvent.toString(date),
+                    weekdayEvent.toString(countMatchMenuDessert),
+                    weekendEvent.toString(countMatchMenuMain),
                     specialEvent.toString(date),
                     presentationEvent.toString()
-            )
+                ).stream()
+                        .filter(str -> !str.isBlank())
+                        .toList()
         );
     }
 }

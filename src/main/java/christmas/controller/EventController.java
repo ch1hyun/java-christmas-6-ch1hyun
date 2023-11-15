@@ -1,10 +1,12 @@
 package christmas.controller;
 
+import christmas.constants.enums.MenuBoard;
 import christmas.model.Badge;
 import christmas.model.DiscountItem;
 import christmas.model.DiscountList;
 import christmas.model.OrderAmount;
 import christmas.model.OrderDate;
+import christmas.model.OrderList;
 import christmas.model.RewardAmount;
 import christmas.model.event.DDayEvent;
 import christmas.model.event.Event;
@@ -30,15 +32,15 @@ public class EventController {
 
     public EventController() {}
 
-    public void proceedEvent(OrderDate orderDate, OrderAmount orderAmount) {
-        requestDiscountEvent(orderDate);
-        requestPresentationEvent(orderAmount);
+    public void proceedEvent(OrderController orderController) {
+        requestDiscountEvent(orderController.getOrderList(), orderController.getOrderDate());
+        requestPresentationEvent(orderController.getOrderAmount());
         generateEvent();
         requestRewardAmount();
         requestBadge();
     }
 
-    private void requestDiscountEvent(OrderDate orderDate) {
+    private void requestDiscountEvent(OrderList orderList, OrderDate orderDate) {
         List<DiscountItem> discountList = new ArrayList<>();
 
         requestWeekdayEvent(orderDate, discountList);
@@ -111,8 +113,17 @@ public class EventController {
         OutputView.printPresentationItem(presentationEvent.getMenu());
     }
 
-    public void showResultRewardList(OrderDate orderDate) {
-        OutputView.printRewardList(event.toString(orderDate.getDate()));
+    public void showResultRewardList(OrderController orderController) {
+        OrderList orderList = orderController.getOrderList();
+        OrderDate orderDate = orderController.getOrderDate();
+
+        OutputView.printRewardList(
+                event.toString(
+                        orderList.getCountMatchMenuGroup(MenuBoard.디저트),
+                        orderList.getCountMatchMenuGroup(MenuBoard.메인),
+                        orderDate.getDate()
+                )
+        );
     }
 
     public void showResultRewardAmount() {

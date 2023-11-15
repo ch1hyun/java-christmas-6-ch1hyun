@@ -4,12 +4,19 @@ import christmas.model.MenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Generator {
     private Generator() {}
 
     public static Integer parseStringToInteger(String number) {
             return Integer.parseInt(number);
+    }
+
+    public static Integer parseLongToInteger(Long number) {
+        return Long.valueOf(
+                Optional.ofNullable(number).orElse(0L)
+        ).intValue();
     }
 
     public static List<MenuItem> parseStringToMenuList(String menu) {

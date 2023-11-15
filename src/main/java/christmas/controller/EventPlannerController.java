@@ -32,10 +32,7 @@ public class EventPlannerController implements EntryController {
     }
 
     private void requestEvent() {
-        eventController.proceedEvent(
-                orderController.getOrderDate(),
-                orderController.getOrderAmount()
-        );
+        eventController.proceedEvent(orderController);
     }
 
     private void requesetCalculate() {

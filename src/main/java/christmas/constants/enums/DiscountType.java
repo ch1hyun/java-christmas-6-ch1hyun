@@ -37,7 +37,7 @@ public enum DiscountType {
         return offsetAmount;
     }
 
-    public Integer getAmount(Integer date) {
-        return getStartAmount() + getOffsetAmount() * (date - 1);
+    public Integer getAmount(Integer number) {
+        return getStartAmount() + getOffsetAmount() * (number - 1);
     }
 }

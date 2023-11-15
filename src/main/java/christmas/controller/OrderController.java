@@ -67,4 +67,8 @@ public class OrderController {
     public OrderAmount getOrderAmount() {
         return orderAmount;
     }
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
 }
