@@ -18,10 +18,6 @@ public class Converter {
             return Integer.parseInt(number);
     }
 
-    public static Integer parseLongToInteger(Long number) {
-        return Optional.ofNullable(number).orElse(ZERO_TYPE_LONG).intValue();
-    }
-
     public static List<MenuItem> parseStringToMenuList(String menu) {
         List<String> order = Arrays.stream(menu.split(EventConstant.DELIMITER)).toList();
 

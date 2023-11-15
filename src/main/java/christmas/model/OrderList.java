@@ -52,11 +52,10 @@ public class OrderList {
     }
 
     public Integer getCountMatchMenuGroup(MenuBoard menuBoard) {
-        return Converter.parseLongToInteger(
-                orderList.stream()
-                        .filter(menuItem -> menuItem.isGroup(menuBoard))
-                        .count()
-        );
+        return orderList.stream()
+                .filter(menuItem -> menuItem.isGroup(menuBoard))
+                .mapToInt(MenuItem::getCount)
+                .sum();
     }
 
     @Override
