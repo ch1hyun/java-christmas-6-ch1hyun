@@ -6,6 +6,7 @@ import christmas.model.OrderDate;
 import christmas.model.OrderList;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.Collections;
 import java.util.List;
 
 public class OrderController {
@@ -57,5 +58,13 @@ public class OrderController {
 
     public void requestResultSubTotal() {
         OutputView.printTotalAmountBeforeDiscount(orderAmount.toString());
+    }
+
+    public OrderDate getOrderDate() {
+        return orderDate;
+    }
+
+    public OrderAmount getOrderAmount() {
+        return orderAmount;
     }
 }
