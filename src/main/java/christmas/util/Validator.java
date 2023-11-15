@@ -20,16 +20,18 @@ public class Validator {
         }
     }
 
-    public static void validateSingleMenuItemIsBeverage(MenuItem menuItem, String errorMessage) {
-        if (MenuBoard.음료.contains(
-                Menu.valueOf(menuItem.getName())
-        )) {
+    public static void validateOnlyContainBeverage(List<MenuItem> menuItemList, String errorMessage) {
+        Long size = menuItemList.stream()
+                .filter(menuItem -> menuItem.isGroup(MenuBoard.음료))
+                .count();
+
+        if (menuItemList.size() == size.intValue()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    public static<T> void validateDuplicate(List<T> list, String errorMessage) {
-        if (list.size() != list.stream().distinct().count()) {
+    public static<MenuItem> void validateDuplicate(List<String> menuItemList, String errorMessage) {
+        if (menuItemList.size() != menuItemList.stream().distinct().count()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

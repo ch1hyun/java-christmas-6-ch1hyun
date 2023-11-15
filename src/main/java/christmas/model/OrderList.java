@@ -16,10 +16,6 @@ public class OrderList {
     }
 
     private static void validate(List<MenuItem> orderList) {
-        Integer countMenu = orderList.stream()
-                .mapToInt(MenuItem::getCount)
-                .sum();
-
         Validator.validateDuplicate(
             orderList.stream()
                     .map(MenuItem::getName)
@@ -27,14 +23,17 @@ public class OrderList {
             ErrorMessage.INVALID_ORDER.getMessage()
         );
 
-        if (countMenu == EventConstant.COUNT_LOWER) {
-            Validator.validateSingleMenuItemIsBeverage(orderList.get(EventConstant.FIRST_ITEM), ErrorMessage.INVALID_ORDER.getMessage());
-        }
+        Validator.validateOnlyContainBeverage(
+                orderList,
+                ErrorMessage.INVALID_ORDER.getMessage()
+        );
 
         Validator.validateNumberInRange(
                 EventConstant.COUNT_LOWER,
                 EventConstant.COUNT_UPPER,
-                countMenu,
+                orderList.stream()
+                        .mapToInt(MenuItem::getCount)
+                        .sum(),
                 ErrorMessage.INVALID_ORDER.getMessage()
         );
     }
