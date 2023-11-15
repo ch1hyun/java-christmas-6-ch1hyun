@@ -14,7 +14,7 @@ public class InputView {
         System.out.println(InputMessage.DATE);
 
         try {
-            return Converter.parseStringToInteger(Console.readLine());
+            return Converter.parseStringToInteger(Console.readLine().strip());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DATE.getMessage());
         }
@@ -24,7 +24,7 @@ public class InputView {
         System.out.println(InputMessage.ORDER_MENU);
 
         try {
-            return Converter.parseStringToMenuList(Console.readLine());
+            return Converter.parseStringToMenuList(Console.readLine().strip());
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }
