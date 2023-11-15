@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.InputMessage;
 import christmas.constants.enums.ErrorMessage;
 import christmas.model.MenuItem;
-import christmas.util.Generator;
+import christmas.util.Converter;
 import java.util.List;
 
 public class InputView {
@@ -14,7 +14,7 @@ public class InputView {
         System.out.println(InputMessage.DATE);
 
         try {
-            return Generator.parseStringToInteger(Console.readLine());
+            return Converter.parseStringToInteger(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DATE.getMessage());
         }
@@ -24,7 +24,7 @@ public class InputView {
         System.out.println(InputMessage.ORDER_MENU);
 
         try {
-            return Generator.parseStringToMenuList(Console.readLine());
+            return Converter.parseStringToMenuList(Console.readLine());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_ORDER.getMessage());
         }

@@ -3,7 +3,7 @@ package christmas.model;
 import christmas.constants.OutputMessage;
 import christmas.constants.enums.ErrorMessage;
 import christmas.constants.enums.MenuBoard;
-import christmas.util.Generator;
+import christmas.util.Converter;
 import christmas.util.Validator;
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class OrderList {
     }
 
     public Integer getCountMatchMenuGroup(MenuBoard menuBoard) {
-        return Generator.parseLongToInteger(
+        return Converter.parseLongToInteger(
                 orderList.stream()
                         .filter(menuItem -> menuItem.isGroup(menuBoard))
                         .count()

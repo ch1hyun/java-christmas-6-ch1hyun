@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class Generator {
-    private Generator() {}
+public class Converter {
+    private Converter() {}
 
     public static Integer parseStringToInteger(String number) {
             return Integer.parseInt(number);
