@@ -1,7 +1,12 @@
 package christmas;
 
+import christmas.controller.EntryController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig appConfig = AppConfig.getInstance();
+
+        EntryController entryController = appConfig.getEntryControllerInstance();;
+        entryController.proceed();
     }
 }
